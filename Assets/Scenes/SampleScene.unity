@@ -5058,7 +5058,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 96685872}
-  - component: {fileID: 96685873}
   m_Layer: 6
   m_Name: Cabin Pivot
   m_TagString: Untagged
@@ -5085,21 +5084,6 @@ Transform:
   - {fileID: 1402787762}
   m_Father: {fileID: 371310552}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &96685873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96685871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc884c0132635c4dab88fe019ab99bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalRotationSpeed: 80
-  cannonElevationSpeed: 60
-  cannon: {fileID: 0}
 --- !u!1 &133346959
 GameObject:
   m_ObjectHideFlags: 0
@@ -10571,6 +10555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 361056762}
   - component: {fileID: 361056764}
+  - component: {fileID: 361056765}
   m_Layer: 6
   m_Name: Left Gun
   m_TagString: Untagged
@@ -10691,6 +10676,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &361056765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361056761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3416151ce4ed16469a8b56ed0d8de84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 9222002306933563092, guid: 7e90f018cb397bc4f98d7da0e68f4183, type: 3}
+  projectileOrigin: {fileID: 1557026037}
+  fireParticleSystem: {fileID: 686009391}
 --- !u!1 &364378469
 GameObject:
   m_ObjectHideFlags: 0
@@ -76374,6 +76374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1742857377}
   - component: {fileID: 1742857379}
+  - component: {fileID: 1742857380}
   m_Layer: 6
   m_Name: Right Gun
   m_TagString: Untagged
@@ -76494,6 +76495,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1742857380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742857376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3416151ce4ed16469a8b56ed0d8de84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 9222002306933563092, guid: 7e90f018cb397bc4f98d7da0e68f4183, type: 3}
+  projectileOrigin: {fileID: 686550102}
+  fireParticleSystem: {fileID: 1167092160}
 --- !u!1 &1767657308
 GameObject:
   m_ObjectHideFlags: 0
