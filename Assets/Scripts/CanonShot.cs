@@ -33,6 +33,7 @@ public class CanonShot : MonoBehaviour
         projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * shotForce, ForceMode.Impulse);
         canShot = false;
         Invoke("LoadBullet", loadBulletTime);
+        gameObject.GetComponentInChildren<CanonRecoil>().StartRecoil();
     }
 
     private void LoadBullet()
