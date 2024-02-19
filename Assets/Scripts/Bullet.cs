@@ -23,6 +23,6 @@ public class Bullet : MonoBehaviour {
 
     void OnCollisionEnter(Collision other) {
         Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
 }
