@@ -10855,6 +10855,7 @@ MonoBehaviour:
   projectileOrigin: {fileID: 1557026037}
   fireParticleSystem: {fileID: 686009391}
   cannonRecoil: {fileID: 693451970}
+  panCameraController: {fileID: 1733380130}
   onGUI: 1
 --- !u!1 &364378469
 GameObject:
@@ -36249,6 +36250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPosition: {fileID: 825277348}
+  mainCamera: {fileID: 963194227}
+  panCamera: {fileID: 1592561880}
 --- !u!1 &1003374925
 GameObject:
   m_ObjectHideFlags: 0
@@ -76658,6 +76661,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cabinPivot: {fileID: 27225970}
+  panCamera: {fileID: 1592561880}
+  target: {fileID: 0}
 --- !u!1 &1733470354
 GameObject:
   m_ObjectHideFlags: 0
@@ -76888,6 +76893,7 @@ MonoBehaviour:
   projectileOrigin: {fileID: 686550102}
   fireParticleSystem: {fileID: 1167092160}
   cannonRecoil: {fileID: 1877947989}
+  panCameraController: {fileID: 0}
   onGUI: 0
 --- !u!1 &1767657308
 GameObject:
