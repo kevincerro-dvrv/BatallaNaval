@@ -20,7 +20,7 @@ public class CannonShot : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void LateUpdate() {
         
         if(canShot && Input.GetKeyDown(KeyCode.Space)) {
             //Disparamos... o no
@@ -36,7 +36,7 @@ public class CannonShot : MonoBehaviour {
         //Si tenemos establecida la referencia a panCameraController (sólo uno de los dos cañones debe tenerla)
         //le pasamos la referencia de la bala para que la cámara la siga
         if(panCameraController != null) {
-            StartCoroutine(SetPanCameraTarget(bulletGO.transform));
+            StartCoroutine(SetPanCameraTarget(bulletGO.GetComponent<Bullet>()));
         }
 
         canShot = false;
@@ -48,10 +48,10 @@ public class CannonShot : MonoBehaviour {
         canShot = true;
     } 
 
-    private IEnumerator SetPanCameraTarget(Transform bulletTransform) {
+    private IEnumerator SetPanCameraTarget(Bullet bullet) {
         yield return new WaitForSeconds(2f);
-        if(bulletTransform != null) {
-            panCameraController.target = bulletTransform;
+        if(bullet != null) {
+            panCameraController.Follow(bullet);
         }
     }
 

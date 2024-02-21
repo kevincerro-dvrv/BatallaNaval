@@ -31,9 +31,11 @@ public class ShipMovement : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.A)) {
             rudderLevel = Mathf.Clamp(rudderLevel - 1, -MAX_RUDDER, MAX_RUDDER);
+            UserInterface.instance.SetRudder(rudderLevel);
         }
         if(Input.GetKeyDown(KeyCode.D)) {
             rudderLevel = Mathf.Clamp(rudderLevel + 1, -MAX_RUDDER, MAX_RUDDER);
+            UserInterface.instance.SetRudder(rudderLevel);
         }
         
 

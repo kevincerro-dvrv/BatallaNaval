@@ -5,12 +5,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
     public GameObject explosionPrefab;
 
-    private Rigidbody rb;
-
+    public delegate void OnBulletDestroyedDelegate(GameObject bullet);
+    public OnBulletDestroyedDelegate OnBulletDestroyed;
+   
     // Start is called before the first frame update
     void Start() {
-        rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * 600f, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(transform.forward * 600f, ForceMode.Impulse);
     }
 
     // Update is called once per frame
@@ -23,6 +23,7 @@ public class Bullet : MonoBehaviour {
 
     void OnCollisionEnter(Collision other) {
         Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
+        OnBulletDestroyed?.Invoke(gameObject);
         Destroy(gameObject, 2f);
     }
 }
