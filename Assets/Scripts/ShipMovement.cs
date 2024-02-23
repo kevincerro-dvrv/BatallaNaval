@@ -23,10 +23,12 @@ public class ShipMovement : MonoBehaviour {
     void Update() {
         if(Input.GetKeyDown(KeyCode.W)) {
             powerLevel = Mathf.Clamp(powerLevel+1, MIN_POWER, MAX_POWER);
+            UserInterface.instance.SetPower(powerLevel);
         }
 
         if(Input.GetKeyDown(KeyCode.S)) {
             powerLevel = Mathf.Clamp(powerLevel-1, MIN_POWER, MAX_POWER);
+            UserInterface.instance.SetPower(powerLevel);
         }
 
         if(Input.GetKeyDown(KeyCode.A)) {
@@ -46,5 +48,7 @@ public class ShipMovement : MonoBehaviour {
         }
 
         transform.position += transform.forward * effectiveSpeed * Time.deltaTime;
+
+        UserInterface.instance.SetSpeed(effectiveSpeed * 1.944f);
     }
 }

@@ -8,8 +8,7 @@ public class PanCameraController : MonoBehaviour {
     
     private Quaternion startCameraRotation;
     private float startFov;
-
-    public Transform target;
+    private Transform target;
 
 
     // Start is called before the first frame update
@@ -17,6 +16,7 @@ public class PanCameraController : MonoBehaviour {
          
          startCameraRotation = panCamera.transform.localRotation;
          startFov = panCamera.fieldOfView;
+         
     }
 
     // Update is called once per frame
@@ -26,17 +26,24 @@ public class PanCameraController : MonoBehaviour {
         if(target != null) {
             panCamera.transform.LookAt(target.position);
             panCamera.fieldOfView = 4000f / Vector3.Distance(target.position, panCamera.transform.position);
-        }
+        
+        } 
+
     }
 
     public void Follow(Bullet bulletToFollow) {
         target = bulletToFollow.transform;
-        bulletToFollow.OnBulletDestroyed += Unfollow;
+        bulletToFollow.OnBulletDestoyed += Unfollow;        
     }
 
     private void Unfollow(GameObject bullet) {
         panCamera.transform.localRotation = startCameraRotation;
         panCamera.fieldOfView = startFov;
+        //target = null;
+        Invoke("ResetTarget", 1);
+    }
+
+    private void ResetTarget() {
         target = null;
     }
 }

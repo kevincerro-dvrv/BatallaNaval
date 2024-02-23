@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour {
     public GameObject explosionPrefab;
 
     public delegate void OnBulletDestroyedDelegate(GameObject bullet);
-    public OnBulletDestroyedDelegate OnBulletDestroyed;
+    public OnBulletDestroyedDelegate OnBulletDestoyed;
    
     // Start is called before the first frame update
     void Start() {
@@ -23,7 +23,9 @@ public class Bullet : MonoBehaviour {
 
     void OnCollisionEnter(Collision other) {
         Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
-        OnBulletDestroyed?.Invoke(gameObject);
+        if(OnBulletDestoyed != null) {
+            OnBulletDestoyed(gameObject);
+        }
         Destroy(gameObject, 2f);
     }
 }

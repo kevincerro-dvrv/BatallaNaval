@@ -21,6 +21,11 @@ public class CannonShot : MonoBehaviour {
 
     // Update is called once per frame
     void LateUpdate() {
+        //Si hacemos esto en Update puede pasar (de hecho, nos pasó)
+        //que se dispare un cañón, luego se gire la torre, y luego se dispare el otro cañón
+        //y los disparos no serían paralelos
+        //Al hacerlo en LateUpdate nos aseguramos que todos los Update han sido ejecutados previamente
+        //y en particular el que gira la torre y los cañones en CannonMovement
         
         if(canShot && Input.GetKeyDown(KeyCode.Space)) {
             //Disparamos... o no
@@ -49,7 +54,7 @@ public class CannonShot : MonoBehaviour {
     } 
 
     private IEnumerator SetPanCameraTarget(Bullet bullet) {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         if(bullet != null) {
             panCameraController.Follow(bullet);
         }
