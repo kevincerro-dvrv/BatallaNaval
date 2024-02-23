@@ -7,10 +7,13 @@ public class Bullet : MonoBehaviour {
 
     public delegate void OnBulletDestroyedDelegate(GameObject bullet);
     public OnBulletDestroyedDelegate OnBulletDestoyed;
+
+    private Rigidbody rb;
    
     // Start is called before the first frame update
     void Start() {
-        GetComponent<Rigidbody>().AddForce(transform.forward * 600f, ForceMode.Impulse);
+        rb = GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * 600f, ForceMode.Impulse);
     }
 
     // Update is called once per frame
