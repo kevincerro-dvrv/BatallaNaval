@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PanCameraController : MonoBehaviour {
     public Transform cabinPivot;
+    public Transform playerShip;
     public Camera panCamera;
     
     private Quaternion startCameraRotation;
@@ -21,7 +22,9 @@ public class PanCameraController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        transform.rotation = cabinPivot.rotation;
+        transform.position = new Vector3(playerShip.position.x, transform.position.y, playerShip.position.z);
+
+        transform.eulerAngles = new Vector3 (0, cabinPivot.eulerAngles.y, 0);
 
         if(target != null) {
             panCamera.transform.LookAt(target.position);

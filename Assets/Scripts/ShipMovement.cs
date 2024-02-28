@@ -43,7 +43,7 @@ public class ShipMovement : MonoBehaviour {
 
         float effectiveSpeed = powerLevel * baseSpeed;
         if(powerLevel != 0) {
-            transform.Rotate(transform.up * baseRudderSpeed * rudderLevel * Mathf.Sign(effectiveSpeed) * Time.deltaTime);
+            transform.Rotate(transform.up * baseRudderSpeed * rudderLevel * Mathf.Sign(effectiveSpeed) * Time.deltaTime, Space.World);
             effectiveSpeed -= Mathf.Sign(effectiveSpeed) * Mathf.Abs(rudderLevel) * baseRudderDrag;
         }
 
