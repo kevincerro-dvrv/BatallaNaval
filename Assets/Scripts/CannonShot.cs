@@ -17,6 +17,7 @@ public class CannonShot : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         canShot = true;
+        UserInterface.instance.SetCannonLoaded(true);
     }
 
     // Update is called once per frame
@@ -45,12 +46,14 @@ public class CannonShot : MonoBehaviour {
         }
 
         canShot = false;
+        UserInterface.instance.SetCannonLoaded(false);
         Invoke("LoadBullet", loadTime);
         cannonRecoil?.StartRecoil();
     }
 
     private void LoadBullet() {
         canShot = true;
+        UserInterface.instance.SetCannonLoaded(true);
     } 
 
     private IEnumerator SetPanCameraTarget(Bullet bullet) {

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour {
+    //Creamos un Delegate que se llamará para avisar del impacto de la bala
+    //El barco del jugador se suscribe a este delegate para reaccionar cuando el impacto le afecte
+    public delegate void OnBulletDestroyedDelegate(GameObject bullet, Collision other);
+    public OnBulletDestroyedDelegate OnBulletDestoyed;
+
     public GameObject bulletTrailPrefab;
     public delegate void ReachedPointDelegate(Vector3 reachedPointCoordinates);
     public event ReachedPointDelegate reachedPoint;
@@ -20,6 +25,10 @@ public class EnemyBullet : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision other){
+        if(OnBulletDestoyed != null) {
+            OnBulletDestoyed(gameObject, other);
+        }
+
         GameObject newEffect = Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(newEffect, newEffect.GetComponent<ParticleSystem>().main.duration);
         if(reachedPoint != null) {

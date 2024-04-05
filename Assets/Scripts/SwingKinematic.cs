@@ -12,6 +12,8 @@ public class SwingKinematic : MonoBehaviour {
     public float empujonAlPrincipioX;
     public float empujonAlPrincipioZ;
 
+    private Vector3 bulletCollisionAcceleration;
+
     int numeroDivisionesPorFrame = 100;
 
     // Start is called before the first frame update
@@ -19,6 +21,31 @@ public class SwingKinematic : MonoBehaviour {
         transform.Rotate(transform.forward * empujonAlPrincipioZ, Space.World);
         transform.Rotate(transform.right * empujonAlPrincipioX, Space.World);
 
+        bulletCollisionAcceleration = Vector3.zero;
+
+    }
+
+    public void AddEnemyBullet(EnemyBullet enemyBullet) {
+        enemyBullet.OnBulletDestoyed += EnemyBulletCollision;
+    }
+
+    public void EnemyBulletCollision(GameObject bullet, Collision other) {
+        if(other.gameObject.CompareTag("Player")) {
+            //La bala nos alcanzó
+            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+            
+            Vector3 localBulletVelocity = transform.InverseTransformVector(bulletRigidbody.velocity);
+            //Esto no debería ser, pero es lo que más se parece a la realidad!!!
+            localBulletVelocity = bulletRigidbody.velocity;
+            Debug.Log("Me han dado. QUE DOLOR!!!! " + bulletRigidbody.velocity + " local " + localBulletVelocity );
+
+            bulletCollisionAcceleration = localBulletVelocity * 0.1f;
+            bulletCollisionAcceleration.y = 0;
+            
+            
+
+        }
+        bullet.GetComponent<EnemyBullet>().OnBulletDestoyed -= EnemyBulletCollision;
     }
 
     // Update is called once per frame
@@ -30,7 +57,9 @@ public class SwingKinematic : MonoBehaviour {
             // restorationTorqueRateZ y el ángulo de inclinación (leanAngle)
             float leanAngle = Vector3.SignedAngle(Vector3.ProjectOnPlane(transform.up, transform.forward), Vector3.up, transform.forward);
             //float leanAngle = Vector3.SignedAngle(transform.up, Vector3.up, transform.forward);
-            angularSpeedZ += leanAngle * restorationTorqueRateZ * Time.deltaTime; 
+            angularSpeedZ += leanAngle * restorationTorqueRateZ * Time.deltaTime + bulletCollisionAcceleration.z; 
+
+            bulletCollisionAcceleration.z = 0;
  
             //Aplicamos el giro del barco en el eje Z en función del la angular speed en ese eje
             transform.Rotate(transform.forward * angularSpeedZ * timePerDivision, Space.World); 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyCannonTower : MonoBehaviour {
     GameObject playerShip;
+    private SwingKinematic playerSwingKinematic;
     
 
     public EnemyCannon leftCannon;
@@ -25,6 +26,10 @@ public class EnemyCannonTower : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         playerShip = esm.playerShip;
+
+        //Buscamos el SwingKinematic del barco del jugador
+        playerSwingKinematic = playerShip.GetComponent<SwingKinematic>();
+
         shotOnTargetElevation = false;
         canShot = true;
     }
@@ -52,7 +57,9 @@ public class EnemyCannonTower : MonoBehaviour {
             shotOnTargetElevation = false;
             EnemyBullet leftBullet = leftCannon.Shot();
             leftBullet.reachedPoint += ShotReachedPoint;
-            rightCannon.Shot();
+            playerSwingKinematic.AddEnemyBullet(leftBullet);
+            EnemyBullet rightBullet = rightCannon.Shot();
+            playerSwingKinematic.AddEnemyBullet(rightBullet);
             Invoke("Load", 5);
         }
     }
