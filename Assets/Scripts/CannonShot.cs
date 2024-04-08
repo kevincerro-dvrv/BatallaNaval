@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CannonShot : MonoBehaviour {
@@ -13,7 +12,6 @@ public class CannonShot : MonoBehaviour {
     private float loadTime = 4f;
     private bool canShot;
 
-    public bool onGUI;
     // Start is called before the first frame update
     void Start() {
         canShot = true;
@@ -34,7 +32,6 @@ public class CannonShot : MonoBehaviour {
         }
         
     }
-
 
     private void Shot() {
         fireParticleSystem.Play();
@@ -61,21 +58,5 @@ public class CannonShot : MonoBehaviour {
         if(bullet != null) {
             panCameraController.Follow(bullet);
         }
-    }
-
-
-    void OnGUI() {
-        if( ! onGUI) {
-            return;
-        }
-        GUI.backgroundColor = Color.green;
-        if( ! canShot ) {
-            GUI.backgroundColor = Color.red;
-        }
-        
-        GUI.Button(new Rect(Screen.width - 100, Screen.height -100, 80, 80), "");
-
-        
-        
     }
 }
