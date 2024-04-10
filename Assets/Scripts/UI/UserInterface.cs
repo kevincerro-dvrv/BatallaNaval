@@ -1,6 +1,8 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UserInterface : MonoBehaviour {
     public static UserInterface instance;
@@ -10,62 +12,53 @@ public class UserInterface : MonoBehaviour {
     public TextMeshProUGUI speedValue;
     public TextMeshProUGUI rudderValue;
     public TextMeshProUGUI rudderDirectionValue;
-    public Image readyToShotLight;
 
-    private Texture2D greenSquare;
-    private Texture2D redSquare;
+    public Image readyToShotLight;
 
     void Awake() {
         instance = this;
     }
 
     void Start() {
-        greenSquare = new Texture2D(80, 80);
-        redSquare = new Texture2D(80, 80);
 
-        for(int i=0; i<80; i++) {
-            for(int j=0; j<80; j++) {
-                redSquare.SetPixel(i, j, Color.red);
-                greenSquare.SetPixel(i, j, Color.green);
-            }
-        }
 
-        redSquare.Apply();
-        greenSquare.Apply();
     }
 
     public void SetRudder(int rudderValue) {
-        this.rudderValue.text = Mathf.Abs(rudderValue).ToString();
+        this.rudderValue.text = rudderValue.ToString();
         if(rudderValue == 0) {
             rudderDirectionValue.text = "";
         } else if(rudderValue < 0) {
             rudderDirectionValue.text = "L";
+            this.rudderValue.text = (-1*rudderValue).ToString();
         } else {
             rudderDirectionValue.text = "R";
         }
     }
 
     public void SetPower(int powerValue) {
-
         this.powerValue.text = powerValue.ToString();
-        if (powerValue == 0) {
+        if(powerValue == 0) {
             directionValue.text = "";
-        } else if (powerValue < 0) {
-            directionValue.text = "BKW";
+        } else if(powerValue < 0) {
+            directionValue.text = "BCK";
         } else {
             directionValue.text = "FWD";
         }
+
     }
 
     public void SetSpeed(float speedValue) {
-        this.speedValue.text= speedValue.ToString("0.00");
+        this.speedValue.text = speedValue.ToString("0.00");
     }
 
     public void SetCannonLoaded(bool cannonLoaded) {
-        if (cannonLoaded) {
+        if(cannonLoaded) {
             readyToShotLight.color = Color.green;
         } else {
             readyToShotLight.color = Color.red;
         }
+        
     }
+
 }
