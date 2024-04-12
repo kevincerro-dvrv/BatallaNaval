@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FxTemporaire
   - Bullet
+  - EnemyShip
   layers:
   - Default
   - TransparentFX

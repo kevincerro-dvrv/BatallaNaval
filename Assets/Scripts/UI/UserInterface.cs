@@ -12,9 +12,13 @@ public class UserInterface : MonoBehaviour {
     public TextMeshProUGUI speedValue;
     public TextMeshProUGUI rudderValue;
     public TextMeshProUGUI rudderDirectionValue;
+
     public LifeBar lifeBar;
+    public TextMeshProUGUI scoreValue;
 
     public Image readyToShotLight;
+
+    public GameObject scoreScreen;
 
     void Awake() {
         instance = this;
@@ -63,7 +67,16 @@ public class UserInterface : MonoBehaviour {
     }
 
     public void SetPlayerHealth(int currentHealth, int maxHealth) {
-        lifeBar.SetValue(currentHealth);
+        lifeBar.SetValue((float)currentHealth/maxHealth);
+    }
+
+    public void SetScore(int scoreValue) {
+        this.scoreValue.text = scoreValue.ToString();
+
+    }
+
+    public void ShowScoreScreen() {
+        scoreScreen.SetActive(true);
     }
 
 }

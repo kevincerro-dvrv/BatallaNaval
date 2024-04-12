@@ -7,7 +7,6 @@ public class LifeBar : MonoBehaviour {
     public Image[] barLigths;
     public Color leftColor;
     public Color rightColor;
-
     // Start is called before the first frame update
     void Start() {
         for(int i=0; i<barLigths.Length;i++) {
@@ -25,12 +24,12 @@ public class LifeBar : MonoBehaviour {
     public void SetValue(float value) {
         int onElementsCount = (int) Mathf.Round(barLigths.Length * Mathf.Clamp(value, 0f, 1f));
 
-        for (int i=0; i < onElementsCount; i++) {
-            barLigths[i].gameObject.SetActive(false);
+        int i;
+        for(i=0; i<onElementsCount; i++) {
+            barLigths[i].enabled = true;
         }
-
-        for (int i = onElementsCount; i < barLigths.Length; i++) {
-            barLigths[i].gameObject.SetActive(false);
+        for(; i<barLigths.Length; i++) {
+            barLigths[i].enabled = false;
         }
     }
 }

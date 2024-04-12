@@ -1,34 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager instance;
+    public InputNameForm inputNameForm;
 
-    public int health = 100;
+    
+    private int playerHealth;
+    private int totalScore;
 
-    void Awake()
-    {
+    void Awake() {
         instance = this;
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        playerHealth = 100; 
+        totalScore = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+
+    public void PlayerDamage(int damage) {
+        playerHealth -= damage;
+        Debug.Log("GameManager health " + playerHealth );
+        UserInterface.instance.SetPlayerHealth(playerHealth, 100);
     }
 
-    public void PlayerDamage(int damage)
-    {
-        health -= damage;
-        UserInterface.instance.SetPlayerHealth(health, 100);
+    public void AddScore(int points) {
+        totalScore += points;
+        UserInterface.instance.SetScore(totalScore);
+
+        if(totalScore >= 150) {
+            Time.timeScale = 0;
+            UserInterface.instance.ShowScoreScreen();
+            inputNameForm.SetScore(totalScore);
+        }
     }
 }

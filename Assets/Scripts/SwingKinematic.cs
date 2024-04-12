@@ -37,13 +37,13 @@ public class SwingKinematic : MonoBehaviour {
             Vector3 localBulletVelocity = transform.InverseTransformVector(bulletRigidbody.velocity);
             //Esto no debería ser, pero es lo que más se parece a la realidad!!!
             localBulletVelocity = bulletRigidbody.velocity;
-            Debug.Log("Me han dado. QUE DOLOR!!!! " + bulletRigidbody.velocity + " local " + localBulletVelocity );
+            //Debug.Log("Me han dado. QUE DOLOR!!!! " + bulletRigidbody.velocity + " local " + localBulletVelocity );
 
             bulletCollisionAcceleration = localBulletVelocity * 0.1f;
             bulletCollisionAcceleration.y = 0;
             
             //Descontamos vida a palo seco
-            GameManager.instance.PlayerDamage(8);
+            GameManager.instance.PlayerDamage(4);
 
         }
         bullet.GetComponent<EnemyBullet>().OnBulletDestoyed -= EnemyBulletCollision;

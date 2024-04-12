@@ -9,11 +9,13 @@ public class Bullet : MonoBehaviour {
     public OnBulletDestroyedDelegate OnBulletDestoyed;
 
     private Rigidbody rb;
+    private bool sterile;
    
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * 600f, ForceMode.Impulse);
+        sterile = false;
     }
 
     // Update is called once per frame
@@ -29,6 +31,13 @@ public class Bullet : MonoBehaviour {
         if(OnBulletDestoyed != null) {
             OnBulletDestoyed(gameObject);
         }
+
+        if(! sterile && other.gameObject.CompareTag("EnemyShip")) {
+            GameManager.instance.AddScore(50);
+            sterile = true;
+        }
+
         Destroy(gameObject, 2f);
+   
     }
 }
