@@ -21975,6 +21975,7 @@ MonoBehaviour:
   speedValue: {fileID: 855804086}
   rudderValue: {fileID: 1520910302}
   rudderDirectionValue: {fileID: 717608201}
+  lifeBar: {fileID: 0}
   readyToShotLight: {fileID: 23586590}
 --- !u!114 &661936915
 MonoBehaviour:
@@ -38298,6 +38299,51 @@ MonoBehaviour:
   cameraPosition: {fileID: 825277348}
   mainCamera: {fileID: 963194227}
   panCamera: {fileID: 1592561880}
+--- !u!1 &991197205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 991197207}
+  - component: {fileID: 991197206}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &991197206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991197205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b1599d56c51424bb0dacba27dd4c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!4 &991197207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991197205}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 506.49817, y: 501.0474, z: 20.597183}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1003374925
 GameObject:
   m_ObjectHideFlags: 0
@@ -88693,3 +88739,4 @@ SceneRoots:
   - {fileID: 377477271}
   - {fileID: 661936913}
   - {fileID: 1130623114}
+  - {fileID: 991197207}

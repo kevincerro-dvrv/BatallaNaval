@@ -42,7 +42,8 @@ public class SwingKinematic : MonoBehaviour {
             bulletCollisionAcceleration = localBulletVelocity * 0.1f;
             bulletCollisionAcceleration.y = 0;
             
-            
+            //Descontamos vida a palo seco
+            GameManager.instance.PlayerDamage(8);
 
         }
         bullet.GetComponent<EnemyBullet>().OnBulletDestoyed -= EnemyBulletCollision;

@@ -12,6 +12,7 @@ public class UserInterface : MonoBehaviour {
     public TextMeshProUGUI speedValue;
     public TextMeshProUGUI rudderValue;
     public TextMeshProUGUI rudderDirectionValue;
+    public LifeBar lifeBar;
 
     public Image readyToShotLight;
 
@@ -59,6 +60,10 @@ public class UserInterface : MonoBehaviour {
             readyToShotLight.color = Color.red;
         }
         
+    }
+
+    public void SetPlayerHealth(int currentHealth, int maxHealth) {
+        lifeBar.SetValue(currentHealth);
     }
 
 }
